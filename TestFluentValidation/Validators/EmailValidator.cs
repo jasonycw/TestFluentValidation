@@ -15,11 +15,11 @@ namespace TestFluentValidation.Validators
         {
             RuleFor(x => Email.Create(x))
                 .NotNull()
-                .WithState(x => new Error("EmailError", "Email is not valid"));
+                .WithState(x => new Error("EmailValidator", "Email is not valid"));
             RuleFor(x => Email.Create(x))
                 .Must(x => !(x?.IsGmail ?? false))
                 .When(x => !acceptGmail)
-                .WithState(x => new Error("EmailError", "Gmail is not accepted"));
+                .WithState(x => new Error("EmailValidator", "Gmail is not accepted"));
         }
 
         public override Task<ValidationResult> ValidateAsync(ValidationContext<string> context, CancellationToken cancellation = new CancellationToken())

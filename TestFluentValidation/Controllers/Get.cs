@@ -21,6 +21,8 @@ namespace TestFluentValidation.Controllers
         {
             public Validator()
                 => RuleFor(x => x.Email)
+                    .NotNull()
+                    .WithState(x => new Error("Get.Validator", "Email is null"))
                     .SetValidator(new EmailValidator(false));
         }
         #endregion
