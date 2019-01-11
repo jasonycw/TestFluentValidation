@@ -13,6 +13,9 @@ namespace TestFluentValidation.Validators
     {
         public EmailValidator(bool acceptGmail = true)
         {
+            RuleFor(x => x)
+                .NotNull()
+                .WithState(x => new Error("EmailValidator", "Email is null"));
             RuleFor(x => Email.Create(x))
                 .NotNull()
                 .WithState(x => new Error("EmailValidator", "Email is not valid"));
